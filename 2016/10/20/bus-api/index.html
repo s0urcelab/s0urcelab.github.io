@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>武汉实时公交API | s0urceLab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="客户端启动好慢，而且广告骑脸怎么用？从web版里扒了几个api出来，有空自己写个SPA好了~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="武汉实时公交API">
+<meta property="og:url" content="http://blog.s0urce.tk/2016/10/20/bus-api/index.html">
+<meta property="og:site_name" content="s0urceLab">
+<meta property="og:description" content="客户端启动好慢，而且广告骑脸怎么用？从web版里扒了几个api出来，有空自己写个SPA好了~">
+<meta property="og:updated_time" content="2016-10-20T13:14:43.614Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="武汉实时公交API">
+<meta name="twitter:description" content="客户端启动好慢，而且广告骑脸怎么用？从web版里扒了几个api出来，有空自己写个SPA好了~">
+  
+    <link rel="alternate" href="/atom.xml" title="s0urceLab" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer">
+      <div id="anitOut"></div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">s0urceLab</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.s0urce.tk"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-bus-api" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/20/bus-api/" class="article-date">
+  <time datetime="2016-10-19T16:00:00.000Z" itemprop="datePublished">2016-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      武汉实时公交API
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>客户端启动好慢，而且广告骑脸怎么用？从web版里扒了几个api出来，有空自己写个SPA好了~<br><a id="more"></a></p>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">//请求地址</span></div><div class="line">url : <span class="string">"http://www.wbus.cn/getQueryServlet"</span></div><div class="line"><span class="comment">//请求方式ajax</span></div><div class="line">type : <span class="string">"POST"</span></div><div class="line"><span class="comment">//请求格式</span></div><div class="line">data : &#123;</div><div class="line">  <span class="attr">Type</span> : <span class="string">"LineDetail"</span><span class="comment">//或者LineList</span></div><div class="line">  lineNo : <span class="number">545</span><span class="comment">//公交线路</span></div><div class="line">  direction : <span class="number">0</span> <span class="comment">//线路方向0或者1</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//返回类型</span></div><div class="line">dataType : <span class="string">"json"</span></div></pre></td></tr></table></figure>
+<h3 id="示例请求"><a href="#示例请求" class="headerlink" title="示例请求"></a>示例请求</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">    <span class="attr">type</span>: <span class="string">"POST"</span>,</div><div class="line">    <span class="attr">url</span>: <span class="string">"http://www.wbus.cn/getQueryServlet"</span>,</div><div class="line">    <span class="attr">data</span>: &#123;</div><div class="line">        <span class="attr">Type</span>: <span class="string">"LineDetail"</span>,</div><div class="line">        <span class="attr">lineNo</span>: <span class="number">545</span>,</div><div class="line">        <span class="attr">direction</span>: <span class="number">0</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">timeout</span>: <span class="number">60000</span>,</div><div class="line">    <span class="attr">dataType</span>: <span class="string">"json"</span>,</div><div class="line">    <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(data)</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="返回数据说明"><a href="#返回数据说明" class="headerlink" title="返回数据说明"></a>返回数据说明</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">data: <span class="string">"line"</span>,<span class="string">"stop"</span>,<span class="string">"bus"</span><span class="comment">//返回数据主体</span></div><div class="line">resultCode: <span class="string">"1"</span><span class="comment">//返回状态</span></div><div class="line">resultDes: <span class="string">""</span><span class="comment">//额外信息</span></div><div class="line"></div><div class="line"><span class="comment">//线路详情</span></div><div class="line"><span class="string">"line"</span>: &#123;</div><div class="line">      <span class="string">"lineId"</span>: <span class="string">"027-545-0"</span>,<span class="comment">//线路唯一编码</span></div><div class="line">      <span class="string">"lineNo"</span>: <span class="string">"545"</span>,<span class="comment">//线路号</span></div><div class="line">      <span class="string">"lineName"</span>: <span class="string">"545"</span>,<span class="comment">//线路名</span></div><div class="line">      <span class="string">"direction"</span>: <span class="number">0</span>,<span class="comment">//线路方向</span></div><div class="line">      <span class="string">"endStopName"</span>: <span class="string">"振兴路复兴村小区"</span>,<span class="comment">//终点站</span></div><div class="line">      <span class="string">"startStopName"</span>: <span class="string">"华侨城公交场站"</span>,<span class="comment">//起点站</span></div><div class="line">      <span class="string">"firstTime"</span>: <span class="string">"5:30"</span>,<span class="comment">//开班时间</span></div><div class="line">      <span class="string">"lastTime"</span>: <span class="string">"21:30"</span>,<span class="comment">//首班时间</span></div><div class="line">      <span class="string">"stopsNum"</span>: <span class="string">"27"</span>,<span class="comment">//总站数</span></div><div class="line">    &#125;,</div><div class="line"></div><div class="line"><span class="comment">//沿途站点</span></div><div class="line"><span class="string">"stops"</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="string">"stopId"</span>: <span class="string">"027-919"</span>,<span class="comment">//站点唯一编号</span></div><div class="line">        <span class="string">"stopName"</span>: <span class="string">"华侨城公交场站"</span>,<span class="comment">//站点名称</span></div><div class="line">        <span class="string">"stopNo"</span>: <span class="string">"027-919"</span>,<span class="comment">//站点号</span></div><div class="line">        <span class="string">"jingdu"</span>: <span class="number">0</span>,<span class="comment">//经度</span></div><div class="line">        <span class="string">"weidu"</span>: <span class="number">0</span>,<span class="comment">//维度</span></div><div class="line">        <span class="string">"order"</span>: <span class="number">1</span>,<span class="comment">//站点序号</span></div><div class="line">      &#125;, ...]</div><div class="line"></div><div class="line"><span class="comment">//实时车次情况</span></div><div class="line"><span class="string">"bus"</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="string">"stopId"</span>: <span class="string">"027-869"</span>,<span class="comment">//即将到达的站点编号</span></div><div class="line">        <span class="string">"order"</span>: <span class="number">2</span>,<span class="comment">//站点序号</span></div><div class="line">        <span class="string">"busNum"</span>: <span class="number">1</span>,<span class="comment">//即将到达该站点的车辆总数</span></div><div class="line">        <span class="string">"arrived"</span>: <span class="number">0</span>,<span class="comment">//已经到达该站点的车辆数</span></div><div class="line">      &#125;, ...]</div></pre></td></tr></table></figure>
+<h5 id="温馨提示：记得处理跨域哟"><a href="#温馨提示：记得处理跨域哟" class="headerlink" title="* 温馨提示：记得处理跨域哟~"></a><p style="color:#FF6100">* 温馨提示：记得处理跨域哟~</p></h5><!-- 
+
+function getNearbys(weidu,jingdu,collectLines,PageSize,PageIndex, success, error) {
+    $.ajax({
+      type : "GET",
+      url : getRootUrl() + NB_LINK,
+      data : {
+        weidu : weidu,
+        jingdu : jingdu,
+        collectLines : collectLines,
+        PageSize : PageSize,
+        PageIndex : PageIndex
+      },
+      timeout : 60000,
+      dataType : "json",
+      success : 
+    });
+  }
+
+ -->
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.s0urce.tk/2016/10/20/bus-api/" data-id="ciui42ir700005cnmcqnbqa8l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FrontEnd/">FrontEnd</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/10/frontend-backend-encrypt/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">WEB登录安全课101</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-bus-api" data-title="武汉实时公交API" data-url="http://blog.s0urce.tk/2016/10/20/bus-api/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'s0urce'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  </section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FrontEnd/">FrontEnd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WOT/">WOT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/FrontEnd/" style="font-size: 20px;">FrontEnd</a> <a href="/tags/WOT/" style="font-size: 10px;">WOT</a> <a href="/tags/test/" style="font-size: 15px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/10/20/bus-api/">武汉实时公交API</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/10/frontend-backend-encrypt/">WEB登录安全课101</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/04/AMX-ELC-strategy/">AMX ELC（伪）攻略</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/02/some-fragment/">补3个月前的笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/01/test-highlight/">测试代码高亮</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 s0urce<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/cav.js"></script>
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
