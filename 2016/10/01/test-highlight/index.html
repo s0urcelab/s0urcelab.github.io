@@ -8,10 +8,10 @@
   <meta name="description" content="修改了官方主题原生的highlight，js和html基本Ok，别的先凑合着">
 <meta property="og:type" content="article">
 <meta property="og:title" content="测试代码高亮">
-<meta property="og:url" content="http://blog.s0urce.tk/2016/10/01/test-highlight/index.html">
+<meta property="og:url" content="http://source2git.github.io/2016/10/01/test-highlight/index.html">
 <meta property="og:site_name" content="s0urceLab">
 <meta property="og:description" content="修改了官方主题原生的highlight，js和html基本Ok，别的先凑合着">
-<meta property="og:updated_time" content="2016-10-09T12:57:50.449Z">
+<meta property="og:updated_time" content="2016-10-27T06:00:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="测试代码高亮">
 <meta name="twitter:description" content="修改了官方主题原生的highlight，js和html基本Ok，别的先凑合着">
@@ -57,7 +57,7 @@
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.s0urce.tk"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://source2git.github.io"></form>
       </div>
     </div>
   </div>
@@ -86,6 +86,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>修改了官方主题原生的highlight，js和html基本Ok，别的先凑合着<br><a id="more"></a></p>
+<h3 id="测试行内代码块"><a href="#测试行内代码块" class="headerlink" title="测试行内代码块"></a>测试行内代码块</h3><p>测试行内代码块 <code>var a=1</code>测试行内代码块<code>function(){console.log}</code>测试行内代码块</p>
 <h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"test"</span>).innerHTML = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>];</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">$initHighlight</span>(<span class="params">block, cls</span>) </span>&#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="keyword">if</span> (cls.search(<span class="regexp">/\bno\-highlight\b/</span>) != <span class="number">-1</span>)</div><div class="line">      <span class="keyword">return</span> process(block, <span class="literal">true</span>, <span class="number">0x0F</span>) +</div><div class="line">             <span class="string">` class="<span class="subst">$&#123;cls&#125;</span>"`</span>;</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="comment">/* handle exception */</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span> / <span class="number">2</span>; i &lt; classes.length; i++) &#123;</div><div class="line">    <span class="keyword">if</span> (checkCondition(classes[i]) === <span class="literal">undefined</span>)</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'undefined'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> $initHighlight;</div></pre></td></tr></table></figure>
 <h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"article-meta"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/landscape-plus/20"</span> <span class="attr">class</span>=<span class="string">"article-date"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">time</span> <span class="attr">itemprop</span>=<span class="string">"datePublished"</span>&gt;</span>2015-05-07<span class="tag">&lt;/<span class="name">time</span>&gt;</span></div><div class="line">  </div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"article-inner"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">itemprop</span>=<span class="string">"name"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">h1</span>&#123;</div><div class="line">    <span class="attribute">text-align</span>: center;</div><div class="line">    <span class="attribute">font-family</span>: <span class="string">"Microsoft Yahei"</span>;</div><div class="line">    <span class="attribute">font-weight</span>: normal;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.list-group</span> &#123;</div><div class="line">    <span class="attribute">padding-left</span>: <span class="number">0</span>;</div><div class="line">    <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.list-group-item</span> &#123;</div><div class="line">    <span class="attribute">position</span>: relative;</div><div class="line">    <span class="attribute">display</span>: block;</div><div class="line">    <span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">15px</span>;</div><div class="line">    <span class="attribute">margin-bottom</span>: -<span class="number">1px</span>;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#fff</span>;</div><div class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ddd</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -93,7 +94,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.s0urce.tk/2016/10/01/test-highlight/" data-id="ciuidiz0c0008n8sidvi4yaya" class="article-share-link">Share</a>
+      <a data-url="http://source2git.github.io/2016/10/01/test-highlight/" data-id="ciuslry6y0001zwsiulc8sk9h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li></ul>
@@ -127,7 +128,7 @@
 
   <section id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-test-highlight" data-title="测试代码高亮" data-url="http://blog.s0urce.tk/2016/10/01/test-highlight/"></div>
+    <div class="ds-thread" data-thread-key="post-test-highlight" data-title="测试代码高亮" data-url="http://source2git.github.io/2016/10/01/test-highlight/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
