@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://source2git.github.io/2016/10/10/frontend-backend-encrypt/index.html">
 <meta property="og:site_name" content="s0urceLab">
 <meta property="og:description" content="当你打开一个网站并试图登录时，背后到底发生了什么？">
-<meta property="og:updated_time" content="2016-10-17T11:41:10.679Z">
+<meta property="og:updated_time" content="2016-10-28T02:03:09.226Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WEB登录安全课101">
 <meta name="twitter:description" content="当你打开一个网站并试图登录时，背后到底发生了什么？">
@@ -87,15 +87,15 @@
       
         <p>当你打开一个网站并试图登录时，背后到底发生了什么？<br><a id="more"></a></p>
 <h3 id="我们先来考虑前端的情况："><a href="#我们先来考虑前端的情况：" class="headerlink" title="我们先来考虑前端的情况："></a>我们先来考虑前端的情况：</h3><h4 id="假设你在进行一个简陋的页面登录"><a href="#假设你在进行一个简陋的页面登录" class="headerlink" title="假设你在进行一个简陋的页面登录"></a>假设你在进行一个简陋的页面登录</h4><ol>
-<li>输入账号username、密码passwd</li>
-<li>表单提交将username和passwd<strong>明文</strong>post到后台</li>
+<li>输入账号<code>username</code>、密码<code>passwd</code></li>
+<li>表单提交将<code>username</code>和<code>passwd</code>明文post到后台</li>
 <li>后台向数据库查询这组用户名密码组合是否存在，并通知前台是否允许登录</li>
 </ol>
-<h4 id="显然，这听起来一点也不安全，于是你决定加密"><a href="#显然，这听起来一点也不安全，于是你决定加密" class="headerlink" title="显然，这听起来一点也不安全，于是你决定加密"></a>显然，这听起来一点也不安全，于是你决定加密</h4><p>百度一下“加密”，你会发现各种加密算法，应该选择哪一种呢？<br>base64听起来不错，但base64编码是可逆的，这意味着，通过base64加密后的内容是可以直接反算出原文的。<br>显然我们需要一种不可逆的算法，hash听起来不错，这种基于提取信息要素的算法，能生成一组唯一的编码，并且不可逆，常见的md5，sha1等。</p>
-<p>假设我们采用md5来加密用户密码，于是发送的密码变成了：<strong>md5(passwd)</strong></p>
-<p>现在，攻击者起码得不到明文密码了，但是hash就牢不可破么？显然不是，既然无法逆运算，攻击者想到事先把常见的密码（虽然我们不厌其烦的要求用户设置强度更高的密码，但总有些人喜欢123456或者888888）组合都预先用hash算一遍，储存一个<strong>passwd: md5(passwd)</strong>对应表（AKA：彩虹表），这样只需要拿到<strong>md5(passwd)</strong>就能很快反查到对应的密码明文，于是同样的，我们想到的对策是，加入一个<strong>salt</strong>盐值，这字符串会被附加在用户密码后，一并进行运算，例如<strong>md5(passwd + salt)</strong>，因为盐值是未知的，这样攻击者就无法预先制作彩虹表了（事实上盐值长度强度还有一些要求，也并非无懈可击，扩展阅读<a href="http://blog.sina.com.cn/s/blog_77e8d1350100wfc7.html" target="_blank" rel="external">戳这里</a>）。</p>
-<p>现在假设我们使用用户名做盐，我们发送的密码就变成了：<strong>md5(passwd + username)</strong><br>此时虽然攻击者知道我们的盐值，也没办法反查密码明文，可以说是“安全“了一丢丢。</p>
-<h4 id="那么为什么上面的“安全”要打引号呢？"><a href="#那么为什么上面的“安全”要打引号呢？" class="headerlink" title="那么为什么上面的“安全”要打引号呢？"></a>那么为什么上面的“安全”要打引号呢？</h4><p>聪明的同学们很快想到，对于后台服务器来说，接收到的只是加密后的密码，这样其实对攻击者来说，根本不需要知道密码明文，只需要用截获到的<strong>md5(passwd + username)</strong>就能伪装成用户进行登录了（AKA：重放攻击），这样看来，不管我们前端使用了怎样的加密算法，最终发送出去的包里，这段<strong>加密信息</strong>总是能够被用来模拟用户骗取服务器信任。再者，前端的加密算法是JS编写的，算法本身对攻击者来说一览无余，另外还有类似JS注入修改、JS劫持等方式让加密算法直接失效。</p>
+<h4 id="显然，这听起来一点也不安全，于是你决定加密"><a href="#显然，这听起来一点也不安全，于是你决定加密" class="headerlink" title="显然，这听起来一点也不安全，于是你决定加密"></a>显然，这听起来一点也不安全，于是你决定加密</h4><p>百度一下“加密”，你会发现各种加密算法，应该选择哪一种呢？<br><code>base64</code>听起来不错，但<code>base64</code>编码是可逆的，这意味着，通过<code>base64</code>加密后的内容是可以直接反算出原文的。<br>显然我们需要一种不可逆的算法，hash听起来不错，这种基于提取信息要素的算法，能生成一组唯一的编码，并且不可逆，常见的md5，sha1等。</p>
+<p>假设我们采用md5来加密用户密码，于是发送的密码变成了：<code>md5(passwd)</code></p>
+<p>现在，攻击者起码得不到明文密码了，但是hash就牢不可破么？显然不是，既然无法逆运算，攻击者想到事先把常见的密码（虽然我们不厌其烦的要求用户设置强度更高的密码，但总有些人喜欢123456或者888888）组合都预先用hash算一遍，储存一个<code>passwd: md5(passwd)</code>对应表（AKA：彩虹表），这样只需要拿到<code>md5(passwd)</code>就能很快反查到对应的密码明文，于是同样的，我们想到的对策是，加入一个<code>salt</code>盐值，这字符串会被附加在用户密码后，一并进行运算，例如<code>md5(passwd + salt)</code>，因为盐值是未知的，这样攻击者就无法预先制作彩虹表了（事实上盐值长度强度还有一些要求，也并非无懈可击，扩展阅读<a href="http://blog.sina.com.cn/s/blog_77e8d1350100wfc7.html" target="_blank" rel="external">戳我戳我</a>）。</p>
+<p>现在假设我们使用用户名做盐，我们发送的密码就变成了：<code>md5(passwd + username)</code><br>此时虽然攻击者知道我们的盐值，也没办法反查密码明文，可以说是“安全“了一丢丢。</p>
+<h4 id="那么为什么上面的“安全”要打引号呢？"><a href="#那么为什么上面的“安全”要打引号呢？" class="headerlink" title="那么为什么上面的“安全”要打引号呢？"></a>那么为什么上面的“安全”要打引号呢？</h4><p>聪明的同学们很快想到，对于后台服务器来说，接收到的只是加密后的密码，这样其实对攻击者来说，根本不需要知道密码明文，只需要用截获到的<code>md5(passwd + username)</code>就能伪装成用户进行登录了（AKA：重放攻击），这样看来，不管我们前端使用了怎样的加密算法，最终发送出去的包里，这段<strong>加密信息</strong>总是能够被用来模拟用户骗取服务器信任。再者，前端的加密算法是JS编写的，算法本身对攻击者来说一览无余，另外还有类似JS注入修改、JS劫持等方式让加密算法直接失效。</p>
 <p>那么上面写了半天，一点卵用都没有么？<br>并不。<br>虽然我们已经知道，前端加密是一件掩耳盗铃的事，但这依旧是有意义的：<br><del>盆友，听说过撞库么？</del><br>虽然我们都知道，为不同账号设置不一样的密码能有效增加自己账户的安全性，但是我们既不会一目十行也不懂过目不忘，一个账号一个密码没难倒攻击者，先把自己弄懵逼了。很多时候，我们的账号密码都是共用的，那么如果你用这组账号密码注册了10个网站，其中哪怕有1个网站被攻击泄露了数据库，这组账号密码就能被用于登录其他9家网站，显然这很可怕。<br><del>说不准有人还用银行卡密码呢（笑</del><br>那么实际上，作为一家网站，我们不仅对自己的数据库安全负有责任，同时还需要对用户保管在我们数据库里的账号密码负责。<br>那么如果一个入侵者已经拿到了数据库访问权，还有什么能阻止他获得用户的账号密码呢？答案是——只保存加密后的密码。可以说，就算是服务器自己，也不知道密码明文到底是什么，这样就算攻击者拿到我们的库，里面也只有访问本网站的凭证，并不能用来攻击其他网站。</p>
 <h3 id="再来说说传输链路层"><a href="#再来说说传输链路层" class="headerlink" title="再来说说传输链路层"></a>再来说说传输链路层</h3><p>说起安全，最不安全的是http协议本身，明文传输内容并且不对发送和接受者做任何的验证，这使得传输链路中任何一个节点都能轻松的读取并修改http数据包，再继续放回链路中传递，也就是监听和截获，可想而知前两年还有网站爆出未作任何处理明文传输账号密码是多么可怕的事，前面已经说了，前端的加密并不能防御这类从链路上发起的攻击，所以我们需要https协议，这种建立在ssl加密层上的通信方式，重点改进了http中存在的两个问题，一是明文传输，二是识别通信双方身份。<br>简而言之，client要提供私钥和server存放的公钥一起作为双方身份的凭证，同时传输的内容也要经过加密，这样一来，首先攻击者伪造的包就能被服务器识别无法实时重放攻击，其次，攻击者截获到的报文，也都是加密后的密文，无法解析。<br>（跟多详情请自行百度关键词https）</p>
 <p>坑先挖到这里，关于后端的加密我们下期再见~</p>
@@ -103,7 +103,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://source2git.github.io/2016/10/10/frontend-backend-encrypt/" data-id="ciuslry7l0008zwsitaamb0m3" class="article-share-link">Share</a>
+      <a data-url="http://source2git.github.io/2016/10/10/frontend-backend-encrypt/" data-id="ciut4yd3v0003uonmy79ra1bp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FrontEnd/">FrontEnd</a></li></ul>
