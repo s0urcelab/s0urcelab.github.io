@@ -181,7 +181,9 @@
 
       <div class="outer">
         <h1 class="article-title">我们搬家啦~</h1>
-        <h1 class="article-title">前往新站 <a href="https://blog.src.moe">blog.src.moe</a></h1>
+        <h1 class="article-title">We move to a new site~</h1>
+        <h1 class="article-title">3秒后自动前往新站 <a href="https://blog.src.moe">blog.src.moe</a></h1>
+        <h1 class="article-title">Automatically redirect to new site in 3s<a href="https://blog.src.moe">blog.src.moe</a></h1>
       </div>
       <footer id="footer">
   
@@ -207,6 +209,11 @@
 
 <script src="/js/anime.min.js"></script>
 <script src="/js/script.js"></script>
+<script>
+window.setTimeout(function() {
+    window.location.href = '//blog.src.moe'
+}, 3000)
+</script>
 
   </div>
 </body>
